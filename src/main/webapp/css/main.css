@@ -1,0 +1,154 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 24-02-2017, 13:00:15
+    Author     : Moonniuniu
+*/
+*{
+    margin:0px;
+    padding:0px;
+}
+body{
+    width: auto;
+    height:auto;
+    background-image: url("../img/backgroundimg3.jpg");
+    backgroud-opacity: 0.5;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 50% 0; 
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover; 
+}
+.wrap{
+    margin: 10% 40% 0 10%;
+    font-family: verdana 10px;
+    
+}
+
+.mid{
+    width: 500px;
+    border-radius: 10px;
+    border:1px solid #35526B;
+    padding: 20px;
+    background-color: #517594;
+    opacity: 0.8;
+}
+
+.book{
+    width: 800px;
+    border-radius: 5px;
+    border:1px solid #999999;
+    padding: 20px;
+    margin-top: -50px;
+    margin-left: -280px;
+}
+
+img{
+    width: 200px;
+    float: left;
+    margin: 0px 20px 10px 0px;
+    border-radius: 5px;
+    border: 1px solid #d3d3d3;
+    padding: 5px;
+}
+.mid h1 {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    line-height: 26.4px;
+    color: #ffffff;
+    text-align: center;
+}
+.mid h3 {
+    font-family: 'sentinel',serif;
+    font-weight: 700;
+    line-height: 1;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: #3a3a3a;
+}
+.book p{
+    font-family: 'ProximaNova','Helvetica Neue';
+    font-size: 14px;
+    color: #4f4d4b;
+}
+.mid p {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 30px;
+    color: #ffffff;
+    margin: 5px 0px 5px 0px;
+}
+blockquote {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 21px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 30px;
+}
+pre {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 18.5714px;
+}
+a {
+    transition: color .4s;
+    color: #265C83;
+    text-decoration: none;
+}
+
+a:link,
+a:visited { color: #265C83; }
+a:hover   { color: #7FDBFF; }
+a:active  {
+    transition: color .3s;
+    color: #007BE6;
+}
+
+.link { text-decoration: none; }
+
+.mytext {
+    width: 200px;
+    height: 15px;
+    margin-bottom: 10px;
+}
+.mybtm {
+    width: 200px;
+    height: 25px;
+    margin-bottom: 10px;
+    background-color: #778899;
+    color: #fff;
+}
+
+input[type=text], textarea {
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid #DDDDDD;
+}
+ 
+input[type=text]:focus, textarea:focus {
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid rgba(81, 203, 238, 1);
+}

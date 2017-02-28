@@ -5,7 +5,7 @@ DROP schema IF EXISTS cupcakes;
 CREATE schema cupcakes;
 USE cupcakes;
 
-CREATE TABLE users(
+CREATE TABLE customers(
 uid INT(30) PRIMARY KEY AUTO_INCREMENT,
 name VARCHAR(100),
 password VARCHAR(45),
@@ -60,12 +60,12 @@ FK_uid INT(30),
 qty INT(30),
 FOREIGN KEY (FK_oid) REFERENCES orders(oid),
 FOREIGN KEY (FK_pid) REFERENCES products(pid),
-FOREIGN KEY (FK_uid) REFERENCES users(uid)
+FOREIGN KEY (FK_uid) REFERENCES customers(uid)
 );
 
 
 -- INSERT 
-INSERT INTO users (name,password,balance) VALUES ('Martin','1234',100.95);
+INSERT INTO customers (name,password,balance) VALUES ('Martin','1234',100.95);
 
 INSERT INTO ptop (name,topPrice) VALUES ('Flødeskum',8.00),('Vanilje Frosting',9.00),('Cheese Cake', 10.00);
 
