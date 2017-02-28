@@ -11,8 +11,8 @@ public class DB {
     private static PreparedStatement stmt;
     private static String driver = "com.mysql.jdbc.Driver";
     private static String URL = "jdbc:mysql://localhost:3306/cupcakes";
-    private static String id = "testuser";
-    private static String pw = "test1234";
+    private static String id = "admin";
+    private static String pw = "123214322";
 
     public Connection getConnection() {
         Connection con = null;
