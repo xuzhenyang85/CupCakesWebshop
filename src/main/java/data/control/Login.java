@@ -1,4 +1,3 @@
-
 package data.control;
 
 import data.Mapper.PartMapper;
@@ -13,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "Login", urlPatterns =
 {
@@ -33,24 +33,25 @@ public class Login extends HttpServlet
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        try  (PrintWriter out = response.getWriter())
+        try (PrintWriter out = response.getWriter())
         {
             response.setContentType("text/html;charset=UTF-8");
-            
+            HttpSession session = request.getSession();
             String email = request.getParameter("email");
-            request.getSession().getAttribute("email");
-            request.setAttribute("email", email);
-            
-            
+            session.setAttribute("email", email);
+            //test session virker
+            //String cemail = (String) session.getAttribute("email");
             String password = request.getParameter("password");
-            
+
             PartMapper pm = new PartMapper();
             boolean validateCustomer = pm.validateCustomer(email, password);
-            
-            if(validateCustomer){
+
+            if (validateCustomer)
+            {
+                //out.print(cemail);
                 response.sendRedirect("customer.jsp");
-            }   
-            else{
+            } else
+            {
                 response.sendRedirect("login.jsp");
             }
         } catch (CustomerException ex)

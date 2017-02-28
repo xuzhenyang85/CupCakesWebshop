@@ -17,14 +17,19 @@
     <body>
         <div class="wrap" >
             <div class="mid">
-                <h1>Hey </h1>
+                <h1>Hey 
                 <%
-                    //String email = request.getSession().getAttribute("email").toString();
-                    out.print(session.getAttribute("email"));
+                    String email = session.getAttribute("email").toString();
                     PartMapper pm = new PartMapper();
-                    //String name = pm.customerInfo(email).getName();
-                    //out.println(name);
+                    String name = pm.customerInfo(email).getName();
+                    out.println(name);
                 %>
+                </h1>
+                <h3>Show Orders:</h3><br>
+                <a href="">order1</a><br>
+                <a href="">order2</a><br>
+                <a href="">order3</a><br>
+                <a href="">order4</a><br>
             </div>
         </div>
     </body>
