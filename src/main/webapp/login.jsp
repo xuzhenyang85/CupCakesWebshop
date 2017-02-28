@@ -17,10 +17,10 @@
             <div class ="mid">
                 <h1>Log In</h1><br>
                 <form action="Login" method="POST">
-                    <p>User name<br>
-                        <input type="text" name="cpr" class="mytext" /><br>
+                    <p>Your email:<br>
+                        <input type="text" name="email" class="mytext" /><br>
                         Password<br>
-                        <input type="password" name="name" class="mytext" /><br>
+                        <input type="password" name="password" class="mytext" /><br>
                         <input type="submit" value="Log In" class="mybtm" /><br><br>
                         <a href="index.jsp" >Home</a>
                         </body>

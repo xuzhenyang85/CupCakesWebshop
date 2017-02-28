@@ -10,7 +10,7 @@ public class DB {
     private static DB instance;
     private static PreparedStatement stmt;
     private static String driver = "com.mysql.jdbc.Driver";
-    private static String URL = "jdbc:mysql://localhost:3306/cupcakes";
+    private static String URL = "jdbc:mysql://46.101.109.188:3306/cupcakes";
     private static String id = "testuser";
     private static String pw = "test1234";
 
