@@ -20,17 +20,18 @@
             
             if (session.getAttribute("email") == null || session.getAttribute("email").equals(""))
             {
-                //out.println("session kill");
                 out.println("<a href='signup.jsp' style='float:right; margin:15px 25px 0px 0px;'>Sign Up</a>");
                 out.println("<a href='login.jsp' style='float:right; margin:15px 25px 0px 0px;'>Log In</a>");                
             } else
             {
-                //String sessionEmail = session.getAttribute("email").toString();
-                //PartMapper pm = new PartMapper();
-                //String email = pm.customerInfo(sessionEmail).toString();
+                String sessionEmail = session.getAttribute("email").toString();
+                PartMapper pm = new PartMapper();
+                String email = pm.customerInfo(sessionEmail).getEmail().toString();
+                
                 out.println("<form action='LogoutServlet' method='post'>");
                 out.println("<input type=submit value='Log Out' class='btm' /> ");
                 out.println("</form>");
+                out.println("<a href='customer.jsp' style='float:right; margin:15px 25px 0px 0px;'> "+email+"</a>");
             }
         %> 
 

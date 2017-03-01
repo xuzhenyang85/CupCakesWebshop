@@ -4,10 +4,9 @@
     padding:0px;
 }
 body{
-    width: auto;
+    width: 100%;
     height:auto;
     background-image: url("../img/backgroundimg3.jpg");
-    backgroud-opacity: 0.5;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: 50% 0; 
@@ -25,8 +24,7 @@ body{
 }
 
 .wrap{
-    margin: 8% 40% 0 10%;
-    font-family: verdana 10px;    
+    margin: 8% 40% 0 10%;  
 }
 .btm{
     float:right;
@@ -52,6 +50,16 @@ body{
     padding: 20px;
     background-color: #517594;
     opacity: 0.8;
+    margin-bottom: 150px;
+}
+.login{
+    width: 500px;
+    border-radius: 10px;
+    border:1px solid #35526B;
+    padding: 20px;
+    background-color: #517594;
+    opacity: 0.8;
+    margin-bottom: 150px;
 }
 
 .book{
@@ -64,7 +72,12 @@ body{
 }
 
 .footer{
-    
+    height: 50px;
+    width: 100%;
+    background-color: #fff;
+    opacity: 0.5;
+    margin: 0px;
+    padding:0px;
 }
 
 img{
@@ -85,6 +98,17 @@ img{
     color: #ffffff;
     text-align: center;
 }
+.login h1 {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    line-height: 26.4px;
+    color: #ffffff;
+    text-align: center;
+}
+
 .mid h3 {
     font-family: 'sentinel',serif;
     font-weight: 700;
@@ -105,9 +129,22 @@ img{
     font-variant: normal;
     font-weight: 400;
     line-height: 30px;
-    color: #ffffff;
-    margin: 5px 0px 5px 0px;
+    color: #fff;
+    margin: 5px 0px 5px 30px;
 }
+
+.login p{
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 200;
+    line-height: 5px;
+    color: #fff;
+    float: left;
+    padding-left: 100px;
+}
+
 blockquote {
     font-family: Verdana, Geneva, sans-serif;
     font-size: 21px;
@@ -140,20 +177,20 @@ a:active  {
 
 .link { text-decoration: none; }
 
-.mid .mytext {
-    width: 200px;
-    height: 15px;
-    margin-bottom: 10px;
+.mytext {
+    width: 250px;
+    height: 25px;
+    margin: 0px 0px 10px 100px;
 }
 .mybtm {
     width: 200px;
-    height: 25px;
-    margin-bottom: 10px;
+    height: 40px;
+    margin: 0px 0px 10px 125px;
     background-color: #778899;
     color: #fff;
 }
 
-input[type=text], textarea {
+.mytext input[type=text], textarea {
   -webkit-transition: all 0.30s ease-in-out;
   -moz-transition: all 0.30s ease-in-out;
   -ms-transition: all 0.30s ease-in-out;
@@ -164,9 +201,10 @@ input[type=text], textarea {
   border: 1px solid #DDDDDD;
 }
  
-input[type=text]:focus, textarea:focus {
+.mytext input[type=text]:focus, textarea:focus {
   box-shadow: 0 0 5px rgba(81, 203, 238, 1);
   padding: 3px 0px 3px 3px;
   margin: 5px 1px 3px 0px;
   border: 1px solid rgba(81, 203, 238, 1);
 }
+

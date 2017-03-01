@@ -7,17 +7,19 @@
     <body>
         <div class="wrap" >
             <div class="mid">
-                <h1>Hey 
+                
                 <%
                     String email = session.getAttribute("email").toString();
                     PartMapper pm = new PartMapper();
                     String name = pm.customerInfo(email).getName();
                     double balance =pm.customerInfo(email).getBalance();
-                    out.println(name+"<br>");
-                    out.println("Balance: "+balance);
+                    
+                    out.println("<img src='img/user.jpg' style='width:100px; float:left;' /> ");
+                    out.println("<h1 style='float:left;'>"+name+"</h1><br><br><br>");
+                    out.println("<p>Balance: "+balance+"</p>");
                 %>
-                </h1>
-                <h3>Show Orders:</h3><br>
+                
+                <p>Show Orders:</p><br>
                 <a href="">order1</a><br>
                 <a href="">order2</a><br>
                 <a href="">order3</a><br>
