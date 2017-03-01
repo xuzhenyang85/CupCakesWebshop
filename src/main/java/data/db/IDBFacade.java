@@ -10,5 +10,4 @@ public interface IDBFacade
     public boolean validateCustomer(String name,String password) throws CustomerException;
     public Customer customerInfo (String email) throws CustomerException;
     
-    
 }

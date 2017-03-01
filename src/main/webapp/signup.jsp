@@ -7,15 +7,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="css/main.css">
-        <title>Cup Cakes Webshop</title>
-    </head>
+    <jsp:include page="masterpage/header.jsp" />
     <body>
         <div class="wrap">
             <div class ="mid">
-                <h1>Sign Up</h1><br>
+                <h1>Sign Up</h1>
                 <p><form action="Signup" method="POST">
                     Fullname<br>
                     <input type="text" name="name" class="mytext" /><br>
@@ -30,6 +26,6 @@
                     Password agian<br>
                     <input type="password" name="password2" class="mytext" /><br><br>
                     <input type="submit" value="Sign Up" class="mybtm" /><br><br></p>
-                    <a href="index.jsp" >Home</a>
                     </body>
+                    <jsp:include page="masterpage/footer.jsp" />
                     </html>

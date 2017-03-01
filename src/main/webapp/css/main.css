@@ -1,12 +1,4 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 24-02-2017, 13:00:15
-    Author     : Moonniuniu
-*/
+
 *{
     margin:0px;
     padding:0px;
@@ -25,11 +17,33 @@ body{
     -webkit-background-size: cover;
     background-size: cover; 
 }
-.wrap{
-    margin: 10% 40% 0 10%;
-    font-family: verdana 10px;
-    
+#logo{
+    width: 100%;
+    height:50px;
+    background-color: #ffffff;
+    opacity: 0.5;
 }
+
+.wrap{
+    margin: 8% 40% 0 10%;
+    font-family: verdana 10px;    
+}
+.btm{
+    float:right;
+    margin:15px 25px 0px 0px;
+}
+
+
+.btm a:link,
+.btm a:visited { color: #265C83; }
+.btm a:hover   { color: #7FDBFF; }
+.btm a:active  {
+    transition: color .3s;
+    color: #007BE6;
+}
+
+.btm .link { text-decoration: none; }
+
 
 .mid{
     width: 500px;
@@ -47,6 +61,10 @@ body{
     padding: 20px;
     margin-top: -50px;
     margin-left: -280px;
+}
+
+.footer{
+    
 }
 
 img{
@@ -122,7 +140,7 @@ a:active  {
 
 .link { text-decoration: none; }
 
-.mytext {
+.mid .mytext {
     width: 200px;
     height: 15px;
     margin-bottom: 10px;

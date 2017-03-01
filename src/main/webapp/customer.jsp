@@ -1,19 +1,9 @@
-<%-- 
-    Document   : customer
-    Created on : 28-02-2017, 14:10:35
-    Author     : Moonniuniu
---%>
-
 <%@page import="domain.entites.Customer"%>
 <%@page import="data.Mapper.PartMapper"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="css/main.css">
-        <title>Cup Cakes Webshop</title>
-    </head>
+    <jsp:include page="masterpage/header.jsp" />
     <body>
         <div class="wrap" >
             <div class="mid">
@@ -22,7 +12,9 @@
                     String email = session.getAttribute("email").toString();
                     PartMapper pm = new PartMapper();
                     String name = pm.customerInfo(email).getName();
-                    out.println(name);
+                    double balance =pm.customerInfo(email).getBalance();
+                    out.println(name+"<br>");
+                    out.println("Balance: "+balance);
                 %>
                 </h1>
                 <h3>Show Orders:</h3><br>

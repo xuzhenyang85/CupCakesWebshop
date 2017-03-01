@@ -1,12 +1,6 @@
 package data.control;
 
-import data.Mapper.PartMapper;
-import domain.entites.Customer;
-import domain.exception.CustomerException;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,11 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "Login", urlPatterns =
+@WebServlet(name = "LogoutServlet", urlPatterns =
 {
-    "/Login"
+    "/LogoutServlet"
 })
-public class Login extends HttpServlet
+public class LogoutServlet extends HttpServlet
 {
 
     /**
@@ -33,33 +27,28 @@ public class Login extends HttpServlet
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        try (PrintWriter out = response.getWriter())
+        response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
+        if (!session.isNew())
         {
-            response.setContentType("text/html;charset=UTF-8");
-            // set session email
-            HttpSession session = request.getSession();
-            String email = request.getParameter("email");
-            session.setAttribute("email", email);
-            
-            //test session virker
-            //String cemail = (String) session.getAttribute("email");
-            String password = request.getParameter("password");
-
-            PartMapper pm = new PartMapper();
-            boolean validateCustomer = pm.validateCustomer(email, password);
-
-            if (validateCustomer)
-            {
-                //out.print(cemail);
-                response.sendRedirect("customer.jsp");
-            } else
-            {
-                response.sendRedirect("login.jsp");
-            }
-        } catch (CustomerException ex)
-        {
-            ex.printStackTrace();
+            session.invalidate();
+            session = request.getSession();
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
         }
+
+//        try (PrintWriter out = response.getWriter())
+//        {
+//            /* TODO output your page here. You may use following sample code. */
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet LogoutServlet</title>");            
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println("<h1>Servlet LogoutServlet at " + request.getContextPath() + "</h1>");
+//            out.println("</body>");
+//            out.println("</html>");
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
