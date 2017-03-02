@@ -1,5 +1,6 @@
 
 
+<%@page import="domain.entites.PTop"%>
 <%@page import="data.Mapper.PartMapper"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="domain.entites.Product"%>
@@ -10,28 +11,49 @@
     <jsp:include page="masterpage/header.jsp" />
     <body>
         <div class="wrap" >
-            <jsp:include page="masterpage/nav.jsp" />
+            <jsp:include page="masterpage/nav.jsp" /> 
             <div id="product">
-                
-                <% 
-                    ArrayList<Product> products = new ArrayList<Product>();
-                    PartMapper pm = new PartMapper();
-                    //products = pm.productList();
-                   // out.print(products.get(1).getPname());
-                   // for(int i = 0; i < products.size();i++){
-                     //   out.println("ID: "+ products.get(i).getPid());
-                       // out.println("Name: "+ products.get(i).getPname());
-                       // out.println("Price: " + products.get(i).getPrice());
-                     //   out.println("Description: " + products.get(i).getDescription());
-                     //   out.println("Topping:" + products.get(i).getTopname());
-                      //  out.println("Topping Price: " + products.get(i).getTopPrice());
-                      //  out.println("Bottom: " + products.get(i).getBottomName());
-                        //out.println("Bottom Price: " + products.get(i).getBottomPrice());
-                       // out.println("<img src='img/" + products.get(i).getImgurl()+"' />");
-                        
-                    //}
-                %>
+                <form id="order" action="Controller" method="post">
 
+                    <input type="hidden" name="origin" value="order">
+                    <%
+
+                        PartMapper pm = new PartMapper();
+
+                        ArrayList<Product> products = new ArrayList<>();
+
+                        products = pm.productList();
+                        for (Product product : products)
+                        {
+                            out.println("<div class='container'>");
+
+                            out.println("<div class='row'>");
+
+                            out.println("<div class='col col-md-4'>");
+                            out.println("<img src ='img/" + product.getImgurl() + "' />");
+                            out.println("</div>");
+
+                            out.println("<div class='col col-md-8'>");
+                            out.println("<h3>Cup Cake Type 1: " + product.getPname() + "</3>");
+                            out.println("</div>");
+                            //row done
+                            out.println("</div>");
+
+                            out.println("</div>");
+                            out.println("</div>");
+
+                            //container
+                            out.println("</div>");
+                        }
+
+                        ArrayList<PTop> ptops = new ArrayList<>();
+                        ptops = pm.getToppingList();
+                        for (PTop ptop : ptops)
+                        {
+                            out.println(ptop.getTopName());
+                        }
+                    %>
+                </form>
             </div>
         </div>
     </body>

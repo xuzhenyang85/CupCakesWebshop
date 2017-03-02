@@ -74,6 +74,9 @@ body{
     margin-bottom: 150px;
 }
 
+#product p{
+    color: #3a3a3a;
+}
 .footer{
     height: 50px;
     width: 100%;

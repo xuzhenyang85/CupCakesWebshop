@@ -2,7 +2,7 @@
 <%@page import="data.Mapper.PartMapper"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang= da>
     <head>
         <script LANGUAGE="JavaScript" src="JS/javascript.js" ></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -21,7 +21,8 @@
             if (session.getAttribute("email") == null || session.getAttribute("email").equals(""))
             {
                 out.println("<a href='signup.jsp' style='float:right; margin:15px 25px 0px 0px;'>Sign Up</a>");
-                out.println("<a href='login.jsp' style='float:right; margin:15px 25px 0px 0px;'>Log In</a>");                
+                out.println("<a href='login.jsp' style='float:right; margin:15px 25px 0px 0px;'>Log In</a>");    
+                out.println("<a href='products.jsp' style='float:right; margin:15px 25px 0px 0px;'>Product</a>");  
             }
             else
             {

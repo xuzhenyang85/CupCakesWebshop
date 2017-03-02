@@ -2,6 +2,8 @@
 package data.db;
 
 import domain.entites.Customer;
+import domain.entites.PBottom;
+import domain.entites.PTop;
 import domain.entites.Product;
 import domain.exception.CustomerException;
 import java.util.ArrayList;
@@ -12,4 +14,6 @@ public interface IDBFacade
     public boolean validateCustomer(String name,String password) throws CustomerException;
     public Customer customerInfo (String email) throws CustomerException;
     public ArrayList<Product> productList ();
+    public ArrayList<PTop> getToppingList();
+    public ArrayList<PBottom> getBottomList();
 }
