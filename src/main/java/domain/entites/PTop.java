@@ -6,12 +6,14 @@ public class PTop
     private int id;
     private String topName;
     private double topPrice;
+    private String topImgurl;
 
-    public PTop(int id, String topName, double topPrice)
+    public PTop(int id, String topName, double topPrice, String topImgurl)
     {
         this.id = id;
         this.topName = topName;
         this.topPrice = topPrice;
+        this.topImgurl = topImgurl;
     }
     
     public PTop(){
@@ -43,12 +45,22 @@ public class PTop
         this.topPrice = topPrice;
     }
 
+    public String getTopImgurl()
+    {
+        return topImgurl;
+    }
+
+    public void setTopImgurl(String topImgurl)
+    {
+        this.topImgurl = topImgurl;
+    }
+
     @Override
     public String toString()
     {
-        return "PTop{" + "id=" + id + ", topName=" + topName + ", topPrice=" + topPrice + '}';
+        return "PTop{" + "id=" + id + ", topName=" + topName + ", topPrice=" + topPrice + ", topImgurl=" + topImgurl + '}';
     }
     
-    
+        
     
 }

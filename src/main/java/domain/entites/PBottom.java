@@ -7,12 +7,14 @@ public class PBottom
     private int id;
     private String bottomName;
     private double bottomPrice;
+    private String bottomImgurl;
 
-    public PBottom(int id, String bottomName, double bottomPrice)
+    public PBottom(int id, String bottomName, double bottomPrice, String bottomImgurl)
     {
         this.id = id;
         this.bottomName = bottomName;
         this.bottomPrice = bottomPrice;
+        this.bottomImgurl = bottomImgurl;
     }
 
     public int getId()
@@ -40,10 +42,22 @@ public class PBottom
         this.bottomPrice = bottomPrice;
     }
 
+    public String getBottomImgurl()
+    {
+        return bottomImgurl;
+    }
+
+    public void setBottomImgurl(String bottomImgurl)
+    {
+        this.bottomImgurl = bottomImgurl;
+    }
+
     @Override
     public String toString()
     {
-        return "PBottom{" + "id=" + id + ", bottomName=" + bottomName + ", bottomPrice=" + bottomPrice + '}';
+        return "PBottom{" + "id=" + id + ", bottomName=" + bottomName + ", bottomPrice=" + bottomPrice + ", bottomImgurl=" + bottomImgurl + '}';
     }
+    
+    
         
 }

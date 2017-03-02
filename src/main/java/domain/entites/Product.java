@@ -6,23 +6,21 @@ public class Product
 {
     private int pid;
     private String pname;
-    private String description;
+    private double price;
     private String topname;
     private double topPrice;
     private String bottomName;
     private double bottomPrice;
-    private String imgurl;
 
-    public Product(int pid, String pname, String description, String topname, double topPrice, String bottomName, double bottomPrice, String imgurl)
+    public Product(int pid, String pname, double price, String topname, double topPrice, String bottomName, double bottomPrice)
     {
         this.pid = pid;
         this.pname = pname;
-        this.description = description;
+        this.price = price;
         this.topname = topname;
         this.topPrice = topPrice;
         this.bottomName = bottomName;
         this.bottomPrice = bottomPrice;
-        this.imgurl = imgurl;
     }
     
     public Product(){
@@ -44,14 +42,14 @@ public class Product
         this.pname = pname;
     }
 
-    public String getDescription()
+    public double getPrice()
     {
-        return description;
+        return price;
     }
 
-    public void setDescription(String description)
+    public void setPrice(double price)
     {
-        this.description = description;
+        this.price = price;
     }
 
     public String getTopname()
@@ -94,21 +92,12 @@ public class Product
         this.bottomPrice = bottomPrice;
     }
 
-    public String getImgurl()
-    {
-        return imgurl;
-    }
-
-    public void setImgurl(String imgurl)
-    {
-        this.imgurl = imgurl;
-    }
-
     @Override
     public String toString()
     {
-        return "Product{" + "pid=" + pid + ", pname=" + pname + ", description=" + description + ", topname=" + topname + ", topPrice=" + topPrice + ", bottomName=" + bottomName + ", bottomPrice=" + bottomPrice + ", imgurl=" + imgurl + '}';
+        return "Product{" + "pid=" + pid + ", pname=" + pname + ", price=" + price + ", topname=" + topname + ", topPrice=" + topPrice + ", bottomName=" + bottomName + ", bottomPrice=" + bottomPrice + '}';
     }
+
 
 
     

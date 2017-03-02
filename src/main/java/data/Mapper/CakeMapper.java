@@ -23,9 +23,7 @@ public class CakeMapper implements ICakeFacade
         ArrayList<Product> products = new ArrayList<Product>();
         try
         {
-            String sql = "SELECT pid, pname, description,imgurl "
-                    + "FROM products "
-                    + "INNER JOIN img ON img.FK_pid = products.pid;";
+            String sql = "SELECT * FROM products";
 
             PreparedStatement pstmt = conn.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
@@ -34,13 +32,12 @@ public class CakeMapper implements ICakeFacade
             {
                 int pid = rs.getInt("pid");
                 String pname = rs.getString("pname");
-                String description = rs.getString("description");
+                double price = rs.getDouble("price");
                 String topName = null;
                 double topPrice = 0;
                 String bottomName = null;
                 double bottomPrice = 0;
-                String imgurl = rs.getString("imgurl");
-                Product product = new Product(pid, pname, description, topName, topPrice, bottomName, bottomPrice, imgurl);
+                Product product = new Product(pid, pname, price, topName, topPrice, bottomName, bottomPrice);
                 products.add(product);
             }
 
@@ -65,7 +62,8 @@ public class CakeMapper implements ICakeFacade
                 int id = rs.getInt("id");
                 String topName = rs.getString("topName");
                 double topPrice = rs.getDouble("topPrice");
-                PTop ptop = new PTop(id, topName, topPrice);
+                String topImgurl = rs.getString("topImgurl");
+                PTop ptop = new PTop(id, topName, topPrice,topImgurl);
                 ptops.add(ptop);
             }
 
@@ -90,7 +88,8 @@ public class CakeMapper implements ICakeFacade
                 int id = rs.getInt("id");
                 String bottomName = rs.getString("bottomName");
                 double bottomPrice = rs.getDouble("bottomPrice");
-                PBottom pbottom = new PBottom(id, bottomName, bottomPrice);
+                String bottomImgurl = rs.getString("bottomImgurl");
+                PBottom pbottom = new PBottom(id, bottomName, bottomPrice,bottomImgurl);
                 pbottoms.add(pbottom);
             }
 

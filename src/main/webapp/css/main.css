@@ -65,13 +65,12 @@ body{
 
 #product {
     width: 1050px;
-    height: 800px;
+    height: auto;
     border-radius: 10px;
     border:1px solid #5d5d5d;
     padding: 20px;
     background-color: #fff;
     opacity: 0.8;
-    margin-bottom: 150px;
 }
 
 #product p{
