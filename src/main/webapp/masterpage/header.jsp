@@ -9,7 +9,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>        
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">     
         <title>Cup Cakes Webshop</title>
 
     <div id="logo">
@@ -17,12 +18,12 @@
         
 
         <%
-            
             if (session.getAttribute("email") == null || session.getAttribute("email").equals(""))
             {
                 out.println("<a href='signup.jsp' style='float:right; margin:15px 25px 0px 0px;'>Sign Up</a>");
                 out.println("<a href='login.jsp' style='float:right; margin:15px 25px 0px 0px;'>Log In</a>");                
-            } else
+            }
+            else
             {
                 String sessionEmail = session.getAttribute("email").toString();
                 PartMapper pm = new PartMapper();
