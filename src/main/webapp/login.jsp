@@ -3,7 +3,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    <head>
     <jsp:include page="masterpage/header.jsp" />
+    </head>
     <body>
         <div class="wrap">
             <div class ="login">

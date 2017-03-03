@@ -3,7 +3,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang= da>
-    <head>
+    
         <script LANGUAGE="JavaScript" src="JS/javascript.js" ></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -34,9 +34,8 @@
                 out.println("<input type=submit value='Log Out' class='btm' /> ");
                 out.println("</form>");
                 out.println("<a href='customer.jsp' style='float:right; margin:15px 25px 0px 0px;'> "+email+"</a>");
+                out.println("<a href='products.jsp' style='float:right; margin:15px 25px 0px 0px;'>Product</a>"); 
             }
         %> 
 
     </div> 
-</head>
-
