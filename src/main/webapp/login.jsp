@@ -7,8 +7,8 @@
     <jsp:include page="masterpage/header.jsp" />
     </head>
     <body>
-        <div class="wrap">
-            <div class ="login">
+        <div class="wrap container">
+            <div class ="login container">
                 <h1>Log In</h1>
                 
                 <form action="Login" method="POST">

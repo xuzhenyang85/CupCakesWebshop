@@ -93,14 +93,20 @@ public class PartMapper implements IDBFacade
 
     public static void main(String[] args)
     {
-        PartMapper pm = new PartMapper();
-
+        try
+        {
+            PartMapper pm = new PartMapper();
+            pm.signUp("xu", "jyllingvej", "234234", "xu@dk.dk", "1234");
 //        ArrayList<PBottom> pbottoms = new ArrayList<>();
 //        pbottoms = pm.getBottomList();
 //        for (PBottom pbottom : pbottoms)
 //        {
 //            System.out.println(pbottom.getBottomName());
 //        }
+        } catch (CustomerException ex)
+        {
+            Logger.getLogger(PartMapper.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
 }

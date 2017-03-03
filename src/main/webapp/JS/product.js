@@ -87,14 +87,14 @@ function addCakes()
     }
     
     //Quantity
-    //var quantity = 0;
-    //quantity = document.getElementById("quantity").value;
+    var quantity = 0;
+    quantity = document.getElementById("quantity").value;
     
     //CakePrice
     var cakeprice = topprice + bottomprice;
     
     //Subtotal
-    var subtotal = 5 + cakeprice;
+    var subtotal = quantity * cakeprice;
     
     total += subtotal;
     document.getElementById("total").innerHTML = total;

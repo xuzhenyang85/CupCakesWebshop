@@ -23,9 +23,9 @@
                     <input type="hidden" name="origin" value="order">
 
 
-                    <%
+                    <%--<%
 
-                        CakeMapper cm = new CakeMapper();
+                        
                         ArrayList<Product> products = new ArrayList<>();
                         products = cm.productList();
                         for (Product product : products)
@@ -42,13 +42,12 @@
                             out.println("</div>");//row done
 
                         }
-                    %>
+                    %>--%>
 
-                    <form  id = "order" action = "Controller" method = "post"> 
-                        <input type = "hidden" name = "origin" value = "order"> 
                         <h2>Tops</h2> 
                         <div id = "tops">
                             <%
+                                CakeMapper cm = new CakeMapper();
                                 ArrayList<PTop> ptops = new ArrayList<>();
                                 ptops = cm.getToppingList();
 
@@ -83,23 +82,23 @@
 
                             %>
                         </div>
-                        <br><br><br><br><br><br><br><br><br><br><br><br><br>
+                        
+                        <br><br><br><br><br><br><br><br><br><br>
                             <p>CakePrice: DKK <span id="CakePrice">0</span>,-    </p>
-                            <%--<label>Quantity</label><input type="text" id="quantity">--%>
-
+                            <label>Quantity</label><input type="text" id="quantity">
+                            
                             <br>
-
+                            
                             <input id="ButtonAddCakes" type="button" value="Add cakes">
-
+                            
                             <br>
 
-                            <table>
+                            <table id = "cakes">
                                 <thead>
                                     <tr>
                                         <th>Top</th>
                                         <th>Bottom</th>
                                         <th>Price</th>
-                                        <th>Quantity</th>
                                         <th>SubTotal</th>
                                     </tr>
                                 </thead>
@@ -118,5 +117,5 @@
                         </div>
                         </div>
                         </body>
-                        <%-- <jsp:include page="masterpage/footer.jsp" /> --%>
+                        <jsp:include page="masterpage/footer.jsp" />
                         </html>

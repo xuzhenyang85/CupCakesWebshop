@@ -42,7 +42,7 @@ public class Signup extends HttpServlet
         {
             PartMapper pm = new PartMapper();
             pm.signUp(name, adresse, phone, email, password);
-            response.sendRedirect("customer.jsp");
+            response.sendRedirect("index.jsp");
             
         } catch (CustomerException ex)
         {
@@ -64,7 +64,7 @@ public class Signup extends HttpServlet
         }
 
     }
-
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
