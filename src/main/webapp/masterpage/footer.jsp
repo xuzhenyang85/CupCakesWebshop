@@ -1,3 +1,3 @@
 <div class="footer" >
-    Design by Lasse & Xu    
+    <p>Design by Lasse & Xu</p>
 </div>

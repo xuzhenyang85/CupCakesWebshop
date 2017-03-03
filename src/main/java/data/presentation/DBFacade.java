@@ -3,11 +3,7 @@ package data.presentation;
 
 import data.db.IDBFacade;
 import domain.entites.Customer;
-import domain.entites.PBottom;
-import domain.entites.PTop;
-import domain.entites.Product;
 import domain.exception.CustomerException;
-import java.util.ArrayList;
 
 
 public class DBFacade implements IDBFacade

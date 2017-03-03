@@ -15,7 +15,7 @@ body{
     -moz-background-size: cover;
     -webkit-background-size: cover;
     background-size: cover; 
-    font-family: 'Gentium Basic';
+    
 }
 
 #logo{
@@ -26,7 +26,7 @@ body{
 }
 
 .wrap{
-     
+     font-family: 'Gentium Basic';
 }
 .btm{
     float:right;
@@ -52,7 +52,7 @@ body{
     border:1px solid #35526B;
     padding: 20px;
     background-color: #fff;
-    opacity: 0.8;
+    opacity: 0.9;
     margin: 100px 100px 100px 100px;
 }
 
@@ -66,23 +66,28 @@ body{
     margin: 10% 0% 10% 25%;
 }
 
-#product {
+.product {
     width: auto;
     height: auto;
+    margin: 10% 0% 10% 5%;
     border-radius: 10px;
     border:1px solid #5d5d5d;
     padding: 20px;
     background-color: #fff;
-    opacity: 0.8;
-    float:left;
+    opacity: 0.9;
 }
-
-#product p{
+.product h2{
+    margin-left: 5%;
+}
+.product p{
     color: #3a3a3a;
+    margin-left: 10%;
+    
 }
 
-#product img{
-    width:180px;
+.product img{
+    width:80%;
+    margin-left: 30px;
 }
 
 .footer{
@@ -91,6 +96,10 @@ body{
     background-color: #fff;
     opacity: 0.5;
 }
+.footer p{
+    text-align: center;
+    padding-top: 1%
+}
 
 img{
     width: 200px;
@@ -98,10 +107,10 @@ img{
     margin: 0px 20px 10px 0px;
     border-radius: 5px;
     border: 1px solid #d3d3d3;
-    padding: 5px;
+    padding: 10px;
 }
 .mid h1 {
-    font-family: Verdana, Geneva, sans-serif;
+    font-family: 'Gentium Basic';
     font-size: 24px;
     font-style: normal;
     font-variant: normal;
@@ -135,8 +144,8 @@ img{
     color: #4f4d4b;
 }
 .mid p {
-    font-family: Verdana, Geneva, sans-serif;
-    font-size: 14px;
+    font-family: 'Gentium Basic';
+    font-size: 16px;
     font-style: normal;
     font-variant: normal;
     font-weight: 400;
@@ -221,12 +230,6 @@ a:active  {
   border: 1px solid rgba(81, 203, 238, 1);
 }
 
-.radio {
-    padding-top: 5px;
-    padding-right: 15px;
-    padding-bottom: 5px;
-    padding-left: 15px;
-    margin: 0px;
-    margin-top: 0px;
-    margin-bottom: 0px;
+.product cakepart {
+    margin-left: 5%;
 }

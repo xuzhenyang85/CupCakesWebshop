@@ -2,11 +2,7 @@
 package data.db;
 
 import domain.entites.Customer;
-import domain.entites.PBottom;
-import domain.entites.PTop;
-import domain.entites.Product;
 import domain.exception.CustomerException;
-import java.util.ArrayList;
 
 public interface IDBFacade
 {

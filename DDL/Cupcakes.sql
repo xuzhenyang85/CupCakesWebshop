@@ -28,16 +28,6 @@ bottomPrice DOUBLE(5,2),
 bottomImgurl VARCHAR(20)
 );
 
-CREATE TABLE products(
-pid INT(30) PRIMARY KEY AUTO_INCREMENT,
-pname VARCHAR(100),
-price double(17,2),
-FK_ptopId INT(30) DEFAULT NULL,
-FK_pbottomId INT(30) DEFAULT NULL,
-FOREIGN KEY (FK_ptopId) REFERENCES ptop(id),
-FOREIGN KEY(FK_pbottomId) REFERENCES pbottom(id)
-);
-
 
 CREATE TABLE orders(
 oid INT(30) PRIMARY KEY AUTO_INCREMENT,
@@ -49,11 +39,13 @@ status TINYINT (0)
 CREATE TABLE o_lines(
 id INT(30) PRIMARY KEY AUTO_INCREMENT,
 FK_oid INT(30),
-FK_pid INT(30),
+FK_topId INT(30),
+FK_bottomId INT(30),
 FK_cemail VARCHAR(45),
 qty INT(30),
 FOREIGN KEY (FK_oid) REFERENCES orders(oid),
-FOREIGN KEY (FK_pid) REFERENCES products(pid),
+FOREIGN KEY (FK_topId) REFERENCES ptop(id),
+FOREIGN KEY (FK_bottomId) REFERENCES pbottom(id),
 FOREIGN KEY (FK_cemail) REFERENCES customers(email)
 );
 
@@ -65,22 +57,17 @@ INSERT INTO ptop (topName,topPrice,topImgurl) VALUES ('Chocolate',5.00,'peanut.p
 
 INSERT INTO pbottom (bottomName,bottomPrice,bottomImgurl) VALUES ('Chocolate',5.00,'chocolate.png'),('Vanilla',5.00,'strawberry.png'),('Vanilla',5.00,'vanilla.png'),('Pistacio',6.00,'chocolate.png'),('Almond',7.00,'strawberry.png');
 
-INSERT INTO products (pname,price) VALUES ('Cup Cake Standard',5.00);
-
--- INSERT INTO img (imgname, imgurl, FK_pid) VALUES ('Standard CupCake','standard.jpg',1);
-
 INSERT INTO orders (date,oPrice,status) VALUES (NOW(),50.00,0);
 
-INSERT INTO o_lines (FK_oid,FK_pid,FK_cemail,qty) VALUES (1,1,'martin@dk.dk',2);
+INSERT INTO o_lines (FK_oid,FK_topId,FK_bottomId,FK_cemail,qty) VALUES (1,1,1,'martin@dk.dk',2);
 
-CREATE VIEW productList AS
-SELECT * FROM products;
 
 CREATE VIEW customerOrders AS
-SELECT * FROM customers 
+SELECT name,email,balance, oid,oPrice,date, topPrice,bottomPrice FROM customers 
 INNER JOIN o_lines ON customers.email = o_lines.FK_cemail 
 INNER JOIN orders ON o_lines.FK_oid = orders.oid 
-INNER JOIN  products ON o_lines.FK_pid = products.pid;
+INNER JOIN  ptop ON o_lines.FK_topId = ptop.id
+INNER JOIN pbottom ON o_lines.FK_bottomId = pbottom.id;
 
 
 

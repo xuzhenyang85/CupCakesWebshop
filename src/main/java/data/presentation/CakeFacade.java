@@ -4,18 +4,11 @@ package data.presentation;
 import data.db.ICakeFacade;
 import domain.entites.PBottom;
 import domain.entites.PTop;
-import domain.entites.Product;
 import java.util.ArrayList;
 
 
 public class CakeFacade implements ICakeFacade
 {
-
-    @Override
-    public ArrayList<Product> productList()
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public ArrayList<PTop> getToppingList()
@@ -28,5 +21,6 @@ public class CakeFacade implements ICakeFacade
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
     
 }
