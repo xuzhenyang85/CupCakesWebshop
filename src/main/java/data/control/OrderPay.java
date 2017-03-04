@@ -32,26 +32,31 @@ public class OrderPay extends HttpServlet
     {
         response.setContentType("text/html;charset=UTF-8");
         //String[] ptop = request.getParameterValues("ptop");
-        
-        HttpSession session = request.getSession();
-        String email = (String)session.getAttribute("email");
-        int topid = Integer.parseInt(request.getParameter("top"));
-        
-        PartMapper pm = new PartMapper();
-        try (PrintWriter out = response.getWriter())
-        {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet NewServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println(email + topid);
-            out.println("</body>");
-            out.println("</html>");
-        }
 
+        HttpSession session = request.getSession();
+        String email = (String) session.getAttribute("email");
+        if (email == null)
+        {
+            response.sendRedirect("login.jsp");
+        } else
+        {
+            //int topid = Integer.parseInt(request.getParameter("top"));
+
+            PartMapper pm = new PartMapper();
+            try (PrintWriter out = response.getWriter())
+            {
+                /* TODO output your page here. You may use following sample code. */
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Servlet NewServlet</title>");
+                out.println("</head>");
+                out.println("<body>");
+                out.println(email);
+                out.println("</body>");
+                out.println("</html>");
+            }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

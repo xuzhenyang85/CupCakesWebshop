@@ -8,6 +8,8 @@ window.addEventListener("load", function () {
     }
 });
 
+
+
 function updateCakePrice()
 {
     var topprice = 0;
@@ -78,7 +80,7 @@ function addCakes()
     //Quantity
     var quantity = 0;
     quantity = document.getElementById("quantity").value;
-    
+
     //CakePrice
     var cakeprice = topprice + bottomprice;
 
@@ -88,7 +90,7 @@ function addCakes()
     total += subtotal;
 
     document.getElementById("total").innerHTML = total;
-    
+
     //Orderlines
     var orderlines = document.getElementById("orderlines");
     orderlines.innerHTML +=
@@ -106,16 +108,24 @@ function addCakes()
             '<input type="hidden" name="cakestopid" value="' + topid + '">' +
             '<input type="hidden" name="cakesbottomid" value="' + bottomid + '">' +
             '<input type="hidden" name="cakesquantity" value="' + quantity + '">';
+//
+//    //session
+//    sessionStorage.setItem('topid', topid);
+//    sessionStorage.setItem('topprice', topprice);
+//    sessionStorage.setItem('bottomid', bottomid);
+//    sessionStorage.setItem('bottomprice', bottomprice);
+//    sessionStorage.setItem('quantity', quantity);
+//    sessionStorage.setItem('total', total);
+
+    var orderForm = document.getElementById("orderForm");
+    orderForm.innerHTML +=
+            '<input type="hidden" name="topid" value="' + topid + '">' +
+            '<input type="hidden" name="topPrice" value="' + topprice + '">' +
+            '<input type="hidden" name="bottomid" value="' + bottomid + '">' +
+            '<input type="hidden" name="bottomPrice" value="' + bottomprice + '">' +
+            '<input type="hidden" name="quantity" value="' + quantity + '">';
     
-    //session
-    sessionStorage.setItem('topid', topid);
-    sessionStorage.setItem('topprice', topprice);
-    sessionStorage.setItem('bottomid', bottomid);
-    sessionStorage.setItem('bottomprice', bottomprice);
-    sessionStorage.setItem('quantity', quantity);
-    sessionStorage.setItem('total', total);
-    
-    
+
     //CheckBalance
     if (document.getElementById("CustomerName") !== null)
     {
@@ -128,3 +138,4 @@ function addCakes()
         }
     }
 }
+

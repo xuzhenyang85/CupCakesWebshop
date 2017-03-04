@@ -12,16 +12,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Moonniuniu
  */
-@WebServlet(name = "NewServlet", urlPatterns =
+@WebServlet(name = "OrderInfo", urlPatterns =
 {
-    "/NewServlet"
+    "/OrderInfo"
 })
-public class NewServlet extends HttpServlet
+public class OrderInfo extends HttpServlet
 {
 
     /**
@@ -37,19 +38,36 @@ public class NewServlet extends HttpServlet
             throws ServletException, IOException
     {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter())
+        //String testtop = request.getParameter("topid"); 
+        
+        if (request.getParameter("topid") != null && request.getParameter("bottomid") != null)
         {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet NewServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet NewServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            HttpSession session = request.getSession();
+            String topid = request.getParameter("topid");
+            session.setAttribute("topid", topid);
+            String bottomid = request.getParameter("bottomid");
+            session.setAttribute("bottomid", bottomid);
+            String quantity = request.getParameter("quantity");
+            session.setAttribute("quantity", quantity);
+            response.sendRedirect("shoppingcart.jsp");
         }
+        else{
+            response.sendRedirect("products.jsp");
+        }
+//        
+//        try (PrintWriter out = response.getWriter())
+//        {
+//            /* TODO output your page here. You may use following sample code. */
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet OrderInfo</title>");            
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println("<h1>top " +testtop+"</h1>");
+//            out.println("</body>");
+//            out.println("</html>");
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
