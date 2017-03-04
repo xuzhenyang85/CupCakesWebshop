@@ -9,7 +9,7 @@
     <body>
         <div class="wrap" >
             <div class="mid">
-                
+                <form action="FillUpBalance" method="POST">
                 <%
                     String email = session.getAttribute("email").toString();
                     PartMapper pm = new PartMapper();
@@ -18,9 +18,11 @@
                     
                     out.println("<img src='img/user.jpg' style='width:100px; float:left;' /> ");
                     out.println("<h1 style='float:left;'>"+name+"</h1><br><br><br>");
-                    out.println("<p>Balance: "+balance+"</p>");
+                    out.println("<p>Balance: "+balance+"</p><br>");
+                    out.println("Tank up<br><input type='text' name='balance'>");
+                    out.println("<input type='submit' value='Tank op' class='customer' />");
                 %>
-                
+                </form>
                 <p>Show Orders:</p><br>
                 <id class="order container">
                     <form   action="Signup" method="POST">
@@ -38,7 +40,7 @@
                             out.println("Total price: "+order.getOprice()+"<br>");
                             if(order.getStatus() ==0){
                             out.println("Status : Not pay <br>");
-                            out.print("<input type='submit' value='Pay now' class='mybtm' />");
+                            out.print("<input type='submit' value='Pay now' class='customer' />");
                             }
                             else{
                                 out.print("Payed");

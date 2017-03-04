@@ -18,11 +18,9 @@ function updateCakePrice()
     for (var i = 0; i < tops.length; i++)
     {
         var top = tops[i];
-        //alert(top.children[3].checked);
         if (top.children[3].checked)
         {
             topprice = parseInt(top.children[2].innerHTML);
-            //alert(topprice);
         }
     }
 
@@ -30,17 +28,13 @@ function updateCakePrice()
     for (var i = 0; i < bottoms.length; i++)
     {
         var bottom = bottoms[i];
-        //alert(bottom.children[3].checked)
         if (bottom.children[3].checked)
         {
             bottomprice = parseInt(bottom.children[2].innerHTML);
-            //alert(bottomprice);
         }
     }
 
     var cakeprice = topprice + bottomprice;
-
-    //alert(topprice + " "+ bottomprice);
 
     document.getElementById("CakePrice").innerHTML = cakeprice;
 
@@ -56,7 +50,6 @@ function addCakes()
     for (var i = 0; i < tops.length; i++)
     {
         var top = tops[i];
-        //alert(top.children[3].checked);
         if (top.children[3].checked)
         {
             topid = top.children[4].value;
@@ -85,10 +78,6 @@ function addCakes()
     //Quantity
     var quantity = 0;
     quantity = document.getElementById("quantity").value;
-    
-    //add bottomid in session, (name,value)
-    sessionStorage.setItem( "quantity", quantity );
-    
     
     //CakePrice
     var cakeprice = topprice + bottomprice;

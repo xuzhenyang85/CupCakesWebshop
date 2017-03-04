@@ -15,6 +15,7 @@ window.addEventListener("load", function () {
     quantity = sessionStorage.getItem('quantity');
     total = sessionStorage.getItem('total');
     
+    document.getElementById("topid").innerHTML = topid;
     document.getElementById("topprice").innerHTML = topprice;
     document.getElementById("bottomprice").innerHTML = bottomprice;
     document.getElementById("quantity").innerHTML = quantity;

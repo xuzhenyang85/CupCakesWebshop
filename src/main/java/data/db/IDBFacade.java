@@ -19,4 +19,5 @@ public interface IDBFacade
     public ArrayList<Order> OrderList(String email);
     public PTop getTop (int FK_topId);
     public PBottom getBottom(int FK_bottomId);
+    public void fillUpBalance(double balance, String email);
 }

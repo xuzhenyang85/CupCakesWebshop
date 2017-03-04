@@ -23,6 +23,7 @@ public class PartMapper implements IDBFacade
     public static void main(String[] args)
     {
         PartMapper pm = new PartMapper();
+        pm.fillUpBalance(20, "martin@dk.dk");
         //pm.addOrder(2, 2, 100, "martin@dk.dk");
         
 //        double bottomprice=pm.getBottom(4).getBottomPrice();
@@ -288,6 +289,25 @@ public class PartMapper implements IDBFacade
             ex.printStackTrace();
         }
         return bottom;
+    }
+
+    @Override
+    public void fillUpBalance(double balance,String email)
+    {
+        try
+        {
+            String sql = "UPDATE customers SET balance =balance+? WHERE email=?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setDouble(1, balance);
+            pstmt.setString(2, email);
+            pstmt.executeUpdate();
+            
+        } catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+        
+        
     }
 }
 
