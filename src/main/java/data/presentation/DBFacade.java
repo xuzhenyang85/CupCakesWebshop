@@ -32,7 +32,7 @@ public class DBFacade implements IDBFacade
     }
 
     @Override
-    public void addOrder(int FK_topid,int FK_bottomid,int qty,String email,double price)
+    public void addOrder(int FK_topid,int FK_bottomid,int qty,String email)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -51,6 +51,18 @@ public class DBFacade implements IDBFacade
 
     @Override
     public ArrayList<Order> OrderList(String email)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public PTop getTop(int FK_topId)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public PBottom getBottom(int FK_bottomId)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

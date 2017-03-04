@@ -23,11 +23,17 @@ public class PartMapper implements IDBFacade
     public static void main(String[] args)
     {
         PartMapper pm = new PartMapper();
-        ArrayList<Order> orders = pm.OrderList("martin@dk.dk");
-        for (Order order : orders)
-        {
-            System.out.println(order.getOprice());
-        }
+        //pm.addOrder(2, 2, 100, "martin@dk.dk");
+        
+//        double bottomprice=pm.getBottom(4).getBottomPrice();
+//        double topPrice = pm.getTop(2).getTopPrice();
+//        System.out.println("topprice "+topPrice+" bottomprice  "+bottomprice);
+        
+//        ArrayList<Order> orders = pm.OrderList("martin@dk.dk");
+//        for (Order order : orders)
+//        {
+//            System.out.println(order.getOprice());
+//        }
 //            boolean customer = pm.validateCustomer("xu@dk.dk", "1234");
 //            System.out.println(customer);
 //        ArrayList<PBottom> pbottoms = new ArrayList<>();
@@ -167,10 +173,36 @@ public class PartMapper implements IDBFacade
     }
 
     @Override
-    public void addOrder(int FK_topid, int FK_bottomid, int qty, String email, double price)
+    public void addOrder(int FK_topid, int FK_bottomid, int qty, String email)
     {
-        Order order = null;
-        String sql = "INSERT INTO () VALUES ";
+        try
+        {
+            PartMapper pm = new PartMapper();
+            double topPrice = pm.getTop(FK_topid).getTopPrice();
+            double bottomPrice = pm.getBottom(FK_bottomid).getBottomPrice();
+            double totalPrice = topPrice + bottomPrice;
+            
+            conn.setAutoCommit(false); //transaction block start
+            String insertOrders = "INSERT INTO orders (date,oPrice) VALUES (NOW(),?);";
+            String insertOlines = "INSERT INTO o_lines "
+                    + "(FK_oid,FK_topId,FK_bottomId,FK_cemail,qty) VALUES "
+                    + "(LAST_INSERT_ID(),?,?,?,?)";
+            PreparedStatement addOrder = conn.prepareStatement(insertOrders);
+            addOrder.setDouble(1, totalPrice);
+            addOrder.executeUpdate();
+            
+            PreparedStatement addOlines = conn.prepareStatement(insertOlines);
+            addOlines.setInt(1, FK_topid);
+            addOlines.setInt(2, FK_bottomid);
+            addOlines.setString(3, email);
+            addOlines.setInt(4, qty);
+            addOlines.executeUpdate(); //Error, rollback, including the first insert statement.
+            conn.commit(); //transaction block end
+            
+        } catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        }
 
     }
 
@@ -209,4 +241,54 @@ public class PartMapper implements IDBFacade
         }
         return orders;
     }
+
+    @Override
+    public PTop getTop(int FK_topId)
+    {
+        PTop top = null;
+        try
+        {
+            String sql = "SELECT id,topName,topPrice,topImgurl FROM ptop WHERE id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, FK_topId);
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()){
+                int topId = rs.getInt("id");
+                String topName = rs.getString("topName");
+                double topPrice = rs.getDouble("topPrice");
+                String topImgurl = rs.getString("topImgurl");
+                top = new PTop(topId,topName,topPrice,topImgurl);
+            }
+        } catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+        return top;
+    }
+
+    @Override
+    public PBottom getBottom(int FK_bottomId)
+    {
+        PBottom bottom = null;
+        try
+        {
+            String sql = "SELECT id,bottomName,bottomPrice,bottomImgurl FROM pbottom WHERE id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, FK_bottomId);
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()){
+                int bottomId = rs.getInt("id");
+                String bottomName = rs.getString("bottomName");
+                double bottomPrice = rs.getDouble("bottomPrice");
+                String bottomImgurl = rs.getString("bottomImgurl");
+                bottom = new PBottom(bottomId,bottomName,bottomPrice,bottomImgurl);
+            }
+        } catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+        return bottom;
+    }
 }
+
+

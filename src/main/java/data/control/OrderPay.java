@@ -1,6 +1,6 @@
-
 package data.control;
 
+import data.Mapper.PartMapper;
 import domain.entites.PTop;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "OrderPay", urlPatterns =
 {
@@ -30,22 +31,18 @@ public class OrderPay extends HttpServlet
             throws ServletException, IOException
     {
         response.setContentType("text/html;charset=UTF-8");
-        String[]  ptop = request.getParameterValues("ptop");
+        //String[] ptop = request.getParameterValues("ptop");
+
+        HttpSession session = request.getSession();
+        String email = request.getParameter("email");
+
+        //test session virker
+        //String cemail = (String) session.getAttribute("email");
+        String password = request.getParameter("password");
+
+        PartMapper pm = new PartMapper();
         
-        try (PrintWriter out = response.getWriter())
-        {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet OrderPay</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            //for(int i=0;i<rataList.)
-            out.println("<h1>ptop " + ptop[1]+ "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

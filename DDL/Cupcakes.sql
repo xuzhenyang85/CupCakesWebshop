@@ -58,7 +58,7 @@ INSERT INTO pbottom (bottomName,bottomPrice,bottomImgurl) VALUES ('Chocolate',5.
 
 START TRANSACTION;
 INSERT INTO orders (date,oPrice) VALUES (NOW(),20.00);
-INSERT INTO o_lines (FK_oid,FK_topId,FK_bottomId,FK_cemail,qty) VALUES (1,1,1,'martin@dk.dk',2);
+INSERT INTO o_lines (FK_oid,FK_topId,FK_bottomId,FK_cemail,qty) VALUES (LAST_INSERT_ID(),1,1,'martin@dk.dk',2);
 COMMIT;
 
 

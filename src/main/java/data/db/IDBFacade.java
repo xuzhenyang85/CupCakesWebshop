@@ -15,6 +15,8 @@ public interface IDBFacade
     public Customer customerInfo (String email) throws CustomerException;
     public ArrayList<PTop> getToppingList();
     public ArrayList<PBottom> getBottomList();
-    public void addOrder(int FK_topid,int FK_bottomid,int qty,String email,double price);
+    public void addOrder(int FK_topid,int FK_bottomid,int qty,String email);
     public ArrayList<Order> OrderList(String email);
+    public PTop getTop (int FK_topId);
+    public PBottom getBottom(int FK_bottomId);
 }
