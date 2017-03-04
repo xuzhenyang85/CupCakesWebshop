@@ -23,13 +23,14 @@ public class PartMapper implements IDBFacade
     public static void main(String[] args)
     {
         PartMapper pm = new PartMapper();
-        pm.fillUpBalance(20, "martin@dk.dk");
-        //pm.addOrder(2, 2, 100, "martin@dk.dk");
-        
+        //pm.fillUpBalance(20, "martin@dk.dk");
+        //boolean money = pm.enoughMoney("martin@dk.dk",400);
+        //System.out.println(money);
+        pm.addOrder(2, 2, 100, "martin@dk.dk",1);
+
 //        double bottomprice=pm.getBottom(4).getBottomPrice();
 //        double topPrice = pm.getTop(2).getTopPrice();
 //        System.out.println("topprice "+topPrice+" bottomprice  "+bottomprice);
-        
 //        ArrayList<Order> orders = pm.OrderList("martin@dk.dk");
 //        for (Order order : orders)
 //        {
@@ -43,7 +44,6 @@ public class PartMapper implements IDBFacade
 //        {
 //            System.out.println(pbottom.getBottomName());
 //     
-
     }
 
     @Override
@@ -174,32 +174,34 @@ public class PartMapper implements IDBFacade
     }
 
     @Override
-    public void addOrder(int FK_topid, int FK_bottomid, int qty, String email)
+    public void addOrder(int FK_topid, int FK_bottomid, int qty, String email,double totalPrice)
     {
         try
         {
-            PartMapper pm = new PartMapper();
-            double topPrice = pm.getTop(FK_topid).getTopPrice();
-            double bottomPrice = pm.getBottom(FK_bottomid).getBottomPrice();
-            double totalPrice = topPrice + bottomPrice;
-            
             conn.setAutoCommit(false); //transaction block start
-            String insertOrders = "INSERT INTO orders (date,oPrice) VALUES (NOW(),?);";
-            String insertOlines = "INSERT INTO o_lines "
+            String updateOrders = "INSERT INTO orders (date,oPrice,status) VALUES (NOW(),?,1);";
+            String updateOlines = "INSERT INTO o_lines "
                     + "(FK_oid,FK_topId,FK_bottomId,FK_cemail,qty) VALUES "
                     + "(LAST_INSERT_ID(),?,?,?,?)";
-            PreparedStatement addOrder = conn.prepareStatement(insertOrders);
+            String updateCustomer = "UPDATE customers SET balance=balance-? WHERE email=?";
+            
+            PreparedStatement addOrder = conn.prepareStatement(updateOrders);
             addOrder.setDouble(1, totalPrice);
             addOrder.executeUpdate();
-            
-            PreparedStatement addOlines = conn.prepareStatement(insertOlines);
+
+            PreparedStatement addOlines = conn.prepareStatement(updateOlines);
             addOlines.setInt(1, FK_topid);
             addOlines.setInt(2, FK_bottomid);
             addOlines.setString(3, email);
             addOlines.setInt(4, qty);
-            addOlines.executeUpdate(); //Error, rollback, including the first insert statement.
+            addOlines.executeUpdate(); 
+
+            PreparedStatement updateBalance = conn.prepareStatement(updateCustomer);
+            updateBalance.setDouble(1, totalPrice);
+            updateBalance.setString(2, email);
+            updateBalance.executeUpdate();//Error, rollback, including the first insert statement.
             conn.commit(); //transaction block end
-            
+
         } catch (SQLException ex)
         {
             ex.printStackTrace();
@@ -232,7 +234,7 @@ public class PartMapper implements IDBFacade
                 double bprice = rs.getDouble("bottomPrice");
                 double oPrice = rs.getByte("oPrice");
                 int status = rs.getInt("status");
-                Order order = new Order(oid, name, cemail, date, qty, tprice, bprice, oPrice,status);
+                Order order = new Order(oid, name, cemail, date, qty, tprice, bprice, oPrice, status);
                 orders.add(order);
             }
 
@@ -253,12 +255,13 @@ public class PartMapper implements IDBFacade
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, FK_topId);
             ResultSet rs = pstmt.executeQuery();
-            if(rs.next()){
+            if (rs.next())
+            {
                 int topId = rs.getInt("id");
                 String topName = rs.getString("topName");
                 double topPrice = rs.getDouble("topPrice");
                 String topImgurl = rs.getString("topImgurl");
-                top = new PTop(topId,topName,topPrice,topImgurl);
+                top = new PTop(topId, topName, topPrice, topImgurl);
             }
         } catch (SQLException ex)
         {
@@ -277,12 +280,13 @@ public class PartMapper implements IDBFacade
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, FK_bottomId);
             ResultSet rs = pstmt.executeQuery();
-            if(rs.next()){
+            if (rs.next())
+            {
                 int bottomId = rs.getInt("id");
                 String bottomName = rs.getString("bottomName");
                 double bottomPrice = rs.getDouble("bottomPrice");
                 String bottomImgurl = rs.getString("bottomImgurl");
-                bottom = new PBottom(bottomId,bottomName,bottomPrice,bottomImgurl);
+                bottom = new PBottom(bottomId, bottomName, bottomPrice, bottomImgurl);
             }
         } catch (SQLException ex)
         {
@@ -292,7 +296,7 @@ public class PartMapper implements IDBFacade
     }
 
     @Override
-    public void fillUpBalance(double balance,String email)
+    public void fillUpBalance(double balance, String email)
     {
         try
         {
@@ -301,14 +305,36 @@ public class PartMapper implements IDBFacade
             pstmt.setDouble(1, balance);
             pstmt.setString(2, email);
             pstmt.executeUpdate();
-            
+
         } catch (SQLException ex)
         {
             ex.printStackTrace();
         }
-        
-        
+    }
+
+    @Override
+    public boolean enoughMoney(String email,double totalPrice)
+    {
+        boolean enoughMoney = false;
+        try
+        {
+            String sql = "SELECT balance FROM customers WHERE email = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, email);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next())
+            {
+                double balance = rs.getDouble("balance");
+                if (balance > totalPrice)
+                {
+                    enoughMoney = true;
+                }
+            }
+
+        } catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+        return enoughMoney;
     }
 }
-
-

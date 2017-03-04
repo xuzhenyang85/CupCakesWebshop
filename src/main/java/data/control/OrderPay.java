@@ -31,7 +31,6 @@ public class OrderPay extends HttpServlet
             throws ServletException, IOException
     {
         response.setContentType("text/html;charset=UTF-8");
-        //String[] ptop = request.getParameterValues("ptop");
 
         HttpSession session = request.getSession();
         String email = (String) session.getAttribute("email");
@@ -40,22 +39,36 @@ public class OrderPay extends HttpServlet
             response.sendRedirect("login.jsp");
         } else
         {
-            //int topid = Integer.parseInt(request.getParameter("top"));
-
+            int topid = Integer.parseInt(session.getAttribute("topid").toString());
+            int bottomid = Integer.parseInt(session.getAttribute("bottomid").toString());
+            int quantity = Integer.parseInt(session.getAttribute("quantity").toString());
+            double totalPrice = Double.parseDouble(session.getAttribute("totalPrice").toString());
             PartMapper pm = new PartMapper();
-            try (PrintWriter out = response.getWriter())
-            {
-                /* TODO output your page here. You may use following sample code. */
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Servlet NewServlet</title>");
-                out.println("</head>");
-                out.println("<body>");
-                out.println(email);
-                out.println("</body>");
-                out.println("</html>");
-            }
+            boolean money = pm.enoughMoney(email, totalPrice);
+            //if has enoght money
+            //if (money)
+            //{
+                pm.addOrder(topid, bottomid, quantity, email,totalPrice);
+                
+                response.sendRedirect("customer.jsp");
+            //}
+            //else{
+                response.sendRedirect("customer.jsp");
+            //}
+//            
+//            try (PrintWriter out = response.getWriter())
+//            {
+//                /* TODO output your page here. You may use following sample code. */
+//                out.println("<!DOCTYPE html>");
+//                out.println("<html>");
+//                out.println("<head>");
+//                out.println("<title>Servlet NewServlet</title>");
+//                out.println("</head>");
+//                out.println("<body>");
+//                out.println(email + "topid "+topid+ " bottomid " +bottomid + " quantity "+ quantity);
+//                out.println("</body>");
+//                out.println("</html>");
+//            }
         }
     }
 

@@ -32,7 +32,7 @@ public class DBFacade implements IDBFacade
     }
 
     @Override
-    public void addOrder(int FK_topid,int FK_bottomid,int qty,String email)
+    public void addOrder(int FK_topid,int FK_bottomid,int qty,String email,double totalPrice)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -69,6 +69,12 @@ public class DBFacade implements IDBFacade
 
     @Override
     public void fillUpBalance(double balance,String email)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean enoughMoney(String email, double totalPrice)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
