@@ -23,7 +23,8 @@
             {
                 out.println("<a href='signup.jsp' style='float:right; margin:15px 25px 0px 0px;'>Sign Up</a>");
                 out.println("<a href='login.jsp' style='float:right; margin:15px 25px 0px 0px;'>Log In</a>");    
-                out.println("<a href='products.jsp' style='float:right; margin:15px 25px 0px 0px;'>Product</a>");  
+                out.println("<a href='products.jsp' style='float:right; margin:15px 25px 0px 0px;'>Product</a>"); 
+                out.println("<a href='shoppingcart.jsp' style='float:right; margin:15px 25px 0px 0px;'>ShoppingCart</a>"); 
             }
             else
             {
@@ -36,6 +37,7 @@
                 out.println("</form>");
                 out.println("<a href='customer.jsp' style='float:right; margin:15px 25px 0px 0px;'> "+email+"</a>");
                 out.println("<a href='products.jsp' style='float:right; margin:15px 25px 0px 0px;'>Product</a>"); 
+                out.println("<a href='shoppingcart.jsp' style='float:right; margin:15px 25px 0px 0px;'>ShoppingCart</a>"); 
             }
         %> 
 

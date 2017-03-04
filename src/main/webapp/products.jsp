@@ -17,7 +17,7 @@
             <%-- <jsp:include page="masterpage/nav.jsp" /> --%>
 
             <div class="product container">
-                <form id="order" action="OrderPay" method="post">
+                <form id="order" action="shoppingcart.jsp" method="post">
 
                     <input type="hidden" name="origin" value="order">
 
@@ -35,7 +35,7 @@
                                     out.print("<p>" + ptops.get(i).getTopName() + "</p>");
                                     out.print("<p>" + ptops.get(i).getTopPrice() + "</p>");
                                     out.print("<input name='Top' class='cakepart' type='radio'>");
-                                    out.print("<input type='hidden' name='ptop' value='" + ptops.get(i).getId() + "'>");
+                                    out.print("<input type='hidden' value='" + ptops.get(i).getId() + "'>");
                                     out.print("</div>");
                                 }
                             %>
