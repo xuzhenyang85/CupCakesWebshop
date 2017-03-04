@@ -26,7 +26,7 @@ public class PartMapper implements IDBFacade
         //pm.fillUpBalance(20, "martin@dk.dk");
         //boolean money = pm.enoughMoney("martin@dk.dk",400);
         //System.out.println(money);
-        pm.addOrder(2, 2, 100, "martin@dk.dk",1);
+        pm.addOrder(2, 2, 100, "martin@dk.dk",200);
 
 //        double bottomprice=pm.getBottom(4).getBottomPrice();
 //        double topPrice = pm.getTop(2).getTopPrice();

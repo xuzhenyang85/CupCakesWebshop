@@ -34,11 +34,10 @@ public class OrderPay extends HttpServlet
 
         HttpSession session = request.getSession();
         String email = (String) session.getAttribute("email");
-        if (email == null)
+
+        if (email != null)
         {
-            response.sendRedirect("login.jsp");
-        } else
-        {
+
             int topid = Integer.parseInt(session.getAttribute("topid").toString());
             int bottomid = Integer.parseInt(session.getAttribute("bottomid").toString());
             int quantity = Integer.parseInt(session.getAttribute("quantity").toString());
@@ -46,15 +45,23 @@ public class OrderPay extends HttpServlet
             PartMapper pm = new PartMapper();
             boolean money = pm.enoughMoney(email, totalPrice);
             //if has enoght money
-            //if (money)
-            //{
-                pm.addOrder(topid, bottomid, quantity, email,totalPrice);
-                
+            if (money)
+            {
+                pm.addOrder(topid, bottomid, quantity, email, totalPrice);
+                session.removeAttribute("topid");
+                session.removeAttribute("bottomid");
+                session.removeAttribute("quantity");
+                session.removeAttribute("totalPrice");
                 response.sendRedirect("customer.jsp");
-            //}
-            //else{
+            } else
+            {
                 response.sendRedirect("customer.jsp");
-            //}
+            }
+        } else
+        {
+
+            response.sendRedirect("login.jsp");
+
 //            
 //            try (PrintWriter out = response.getWriter())
 //            {

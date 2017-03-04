@@ -40,7 +40,6 @@
                             out.println("Total price: "+order.getOprice()+"<br>");
                             if(order.getStatus() ==0){
                             out.println("Status : Not pay <br>");
-                            out.print("<input type='submit' value='Pay now' class='customer' />");
                             }
                             else{
                                 out.print("Payed");

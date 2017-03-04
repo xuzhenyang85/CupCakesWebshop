@@ -32,7 +32,7 @@
                                 double topPrice = topInfo.getTopPrice();
                                 double bottomPrice = bottomInfo.getBottomPrice();
                                 double totalPrice = (topPrice + bottomPrice) * quantity;
-
+                                session.setAttribute("totalPrice", totalPrice);
                                 out.println("<form action='OrderPay' method='POST' >");
                                 out.println("<div class='row'>");
                                 out.println("<div class='col-sm'>");
@@ -65,7 +65,7 @@
                           
                         }
                             else{
-                                out.println("Empty shopping chart");
+                                out.println("Your shopping chart is empty now");
                             }
                     %>
 
@@ -73,5 +73,4 @@
             </div>
         </div>
     </body>
-    <jsp:include page="masterpage/footer.jsp" />
 </html>
