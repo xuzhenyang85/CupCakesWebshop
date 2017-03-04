@@ -3,7 +3,11 @@ package data.presentation;
 
 import data.db.IDBFacade;
 import domain.entites.Customer;
+import domain.entites.Order;
+import domain.entites.PBottom;
+import domain.entites.PTop;
 import domain.exception.CustomerException;
+import java.util.ArrayList;
 
 
 public class DBFacade implements IDBFacade
@@ -23,6 +27,30 @@ public class DBFacade implements IDBFacade
 
     @Override
     public Customer customerInfo(String email) throws CustomerException
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void addOrder(int FK_topid,int FK_bottomid,int qty,String email,double price)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<PTop> getToppingList()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<PBottom> getBottomList()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<Order> OrderList(String email)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

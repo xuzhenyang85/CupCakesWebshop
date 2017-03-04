@@ -1,10 +1,9 @@
 
 
+<%@page import="data.Mapper.PartMapper"%>
 <%@page import="domain.entites.PBottom"%>
 <%@page import="domain.entites.PTop"%>
-<%@page import="data.Mapper.CakeMapper"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="domain.entites.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -25,9 +24,9 @@
                         <h2>Tops</h2> 
                         <div id = "tops">
                             <%
-                                CakeMapper cm = new CakeMapper();
+                                PartMapper pm = new PartMapper();
                                 ArrayList<PTop> ptops = new ArrayList<>();
-                                ptops = cm.getToppingList();
+                                ptops = pm.getToppingList();
 
                                 for (int i = 0; i < ptops.size(); i++)
                                 {
@@ -36,7 +35,7 @@
                                     out.print("<p>" + ptops.get(i).getTopName() + "</p>");
                                     out.print("<p>" + ptops.get(i).getTopPrice() + "</p>");
                                     out.print("<input name='Top' class='cakepart' type='radio'>");
-                                    out.print("<input type='hidden' value='" + ptops.get(i).getId() + "'>");
+                                    out.print("<input type='hidden' name='ptop' value='" + ptops.get(i).getId() + "'>");
                                     out.print("</div>");
                                 }
                             %>
@@ -46,7 +45,7 @@
                         <div id="bottoms">
                             <%
                                 ArrayList<PBottom> pbottoms = new ArrayList<>();
-                                pbottoms = cm.getBottomList();
+                                pbottoms = pm.getBottomList();
                                 for (int i = 0; i < pbottoms.size(); i++)
                                 {
                                     out.print("<div class='col-6 col-md-4'>");
@@ -54,7 +53,7 @@
                                     out.print("<p>" + pbottoms.get(i).getBottomName()+ "</p>");
                                     out.print("<p>" + pbottoms.get(i).getBottomPrice() + "</p>");
                                     out.print("<input name='Bottom' class='cakepart' type='radio'>");
-                                    out.print("<input type='hidden' value='" + pbottoms.get(i).getId() + "'>");
+                                    out.print("<input type='hidden' name='pbottom' value='" + pbottoms.get(i).getId() + "'>");
                                     out.print("</div>");
                                 }
 

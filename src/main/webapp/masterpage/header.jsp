@@ -18,6 +18,7 @@
         
 
         <%
+            
             if (session.getAttribute("email") == null || session.getAttribute("email").equals(""))
             {
                 out.println("<a href='signup.jsp' style='float:right; margin:15px 25px 0px 0px;'>Sign Up</a>");

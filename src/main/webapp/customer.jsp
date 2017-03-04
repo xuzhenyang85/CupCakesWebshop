@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="domain.entites.Order"%>
 <%@page import="domain.entites.Customer"%>
 <%@page import="data.Mapper.PartMapper"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -20,10 +22,31 @@
                 %>
                 
                 <p>Show Orders:</p><br>
-                <a href="">order1</a><br>
-                <a href="">order2</a><br>
-                <a href="">order3</a><br>
-                <a href="">order4</a><br>
+                <id class="order container">
+                    <form   action="Signup" method="POST">
+                <%
+                    ArrayList<Order> orders =pm.OrderList(email);
+                    for (Order order : orders)
+                        {
+                            out.println("<h1>Order no. "+order.getOid()+"</h1>");
+                            out.println("Order name: "+order.getName()+"<br>");
+                            out.println("Order email:"+ order.getEmail()+"<br>");
+                            out.println("Order Date: "+ order.getDate()+"<br>" );
+                            out.println("QTY: "+ order.getQty()+"<br>" );
+                            out.println("Topping price: "+ order.getTprice()+"<br>" );
+                            out.println("Bottom price: "+ order.getBprice() +"<br>" );
+                            out.println("Total price: "+order.getOprice()+"<br>");
+                            if(order.getStatus() ==0){
+                            out.println("Status : Not pay <br>");
+                            out.print("<input type='submit' value='Pay now' class='mybtm' />");
+                            }
+                            else{
+                                out.print("Payed");
+                            }
+                        }
+                %>
+                </id>
+                </form>
             </div>
         </div>
     </body>

@@ -3,11 +3,15 @@ package data.Mapper;
 import data.db.DB;
 import data.db.IDBFacade;
 import domain.entites.Customer;
+import domain.entites.Order;
+import domain.entites.PBottom;
+import domain.entites.PTop;
 import domain.exception.CustomerException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,6 +19,25 @@ public class PartMapper implements IDBFacade
 {
 
     private Connection conn = new DB().getConnection();
+
+    public static void main(String[] args)
+    {
+        PartMapper pm = new PartMapper();
+        ArrayList<Order> orders = pm.OrderList("martin@dk.dk");
+        for (Order order : orders)
+        {
+            System.out.println(order.getOprice());
+        }
+//            boolean customer = pm.validateCustomer("xu@dk.dk", "1234");
+//            System.out.println(customer);
+//        ArrayList<PBottom> pbottoms = new ArrayList<>();
+//        pbottoms = pm.getBottomList();
+//        for (PBottom pbottom : pbottoms)
+//        {
+//            System.out.println(pbottom.getBottomName());
+//     
+
+    }
 
     @Override
     public void signUp(String name, String adresse, String phone, String email, String password) throws CustomerException
@@ -90,23 +113,100 @@ public class PartMapper implements IDBFacade
         return customer;
     }
 
-
-    public static void main(String[] args)
+    @Override
+    public ArrayList<PTop> getToppingList()
     {
+        ArrayList<PTop> ptops = new ArrayList<>();
         try
         {
-            PartMapper pm = new PartMapper();
-            pm.signUp("xu", "jyllingvej", "234234", "xu@dk.dk", "1234");
-//        ArrayList<PBottom> pbottoms = new ArrayList<>();
-//        pbottoms = pm.getBottomList();
-//        for (PBottom pbottom : pbottoms)
-//        {
-//            System.out.println(pbottom.getBottomName());
-//        }
-        } catch (CustomerException ex)
+            String sql = "SELECT * FROM ptop;";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next())
+            {
+                int id = rs.getInt("id");
+                String topName = rs.getString("topName");
+                double topPrice = rs.getDouble("topPrice");
+                String topImgurl = rs.getString("topImgurl");
+                PTop ptop = new PTop(id, topName, topPrice, topImgurl);
+                ptops.add(ptop);
+            }
+
+        } catch (SQLException ex)
         {
-            Logger.getLogger(PartMapper.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
-        
+        return ptops;
+    }
+
+    @Override
+    public ArrayList<PBottom> getBottomList()
+    {
+        ArrayList<PBottom> pbottoms = new ArrayList<>();
+        try
+        {
+            String sql = "SELECT * FROM pbottom;";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next())
+            {
+                int id = rs.getInt("id");
+                String bottomName = rs.getString("bottomName");
+                double bottomPrice = rs.getDouble("bottomPrice");
+                String bottomImgurl = rs.getString("bottomImgurl");
+                PBottom pbottom = new PBottom(id, bottomName, bottomPrice, bottomImgurl);
+                pbottoms.add(pbottom);
+            }
+
+        } catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+
+        return pbottoms;
+    }
+
+    @Override
+    public void addOrder(int FK_topid, int FK_bottomid, int qty, String email, double price)
+    {
+        Order order = null;
+        String sql = "INSERT INTO () VALUES ";
+
+    }
+
+    @Override
+    public ArrayList<Order> OrderList(String email)
+    {
+        ArrayList<Order> orders = new ArrayList<>();
+        try
+        {
+            String sql = "SELECT oid,name,email, date, qty,topPrice,bottomPrice,oPrice,status FROM customers "
+                    + "INNER JOIN o_lines ON customers.email = o_lines.FK_cemail "
+                    + "INNER JOIN orders ON o_lines.FK_oid = orders.oid "
+                    + "INNER JOIN  ptop ON o_lines.FK_topId = ptop.id "
+                    + "INNER JOIN pbottom ON o_lines.FK_bottomId = pbottom.id WHERE email =?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, email);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next())
+            {
+                int oid = rs.getInt("oid");
+                String name = rs.getString("name");
+                String cemail = rs.getString("email");
+                String date = rs.getString("date");
+                int qty = rs.getInt("qty");
+                double tprice = rs.getDouble("topPrice");
+                double bprice = rs.getDouble("bottomPrice");
+                double oPrice = rs.getByte("oPrice");
+                int status = rs.getInt("status");
+                Order order = new Order(oid, name, cemail, date, qty, tprice, bprice, oPrice,status);
+                orders.add(order);
+            }
+
+        } catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+        return orders;
     }
 }

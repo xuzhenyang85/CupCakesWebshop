@@ -37,34 +37,27 @@ public class Signup extends HttpServlet
         String phone = request.getParameter("phone");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        
-        try
+        String password2 = request.getParameter("password2");
+        if (password.equals(password2))
         {
-            PartMapper pm = new PartMapper();
-            pm.signUp(name, adresse, phone, email, password);
-            response.sendRedirect("index.jsp");
-            
-        } catch (CustomerException ex)
-        {
-            ex.printStackTrace();
-        }
+            try (PrintWriter out = response.getWriter())
+            {
+                PartMapper pm = new PartMapper();
+                pm.signUp(name, adresse, phone, email, password);
+                response.sendRedirect("login.jsp");
 
-        try (PrintWriter out = response.getWriter())
-        {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Signup</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Signup at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            } catch (CustomerException ex)
+            {
+                ex.printStackTrace();
+            }
+
+        }
+        else{
+            response.sendRedirect("signup.jsp");
         }
 
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

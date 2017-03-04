@@ -230,6 +230,14 @@ a:active  {
   border: 1px solid rgba(81, 203, 238, 1);
 }
 
-.product cakepart {
+#f-option {
     margin-left: 5%;
+    display:inline-block;
+    width:19px;
+    height:19px;
+}
+
+.order{
+    text-align: center;
+    margin: 0% 0% 0% 10%;
 }

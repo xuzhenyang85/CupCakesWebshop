@@ -33,11 +33,10 @@ CREATE TABLE orders(
 oid INT(30) PRIMARY KEY AUTO_INCREMENT,
 date DATETIME DEFAULT NULL,
 oPrice DOUBLE (15,2),
-status TINYINT (0)
+status TINYINT (0) DEFAULT 0
 );
 
 CREATE TABLE o_lines(
-id INT(30) PRIMARY KEY AUTO_INCREMENT,
 FK_oid INT(30),
 FK_topId INT(30),
 FK_bottomId INT(30),
@@ -57,13 +56,19 @@ INSERT INTO ptop (topName,topPrice,topImgurl) VALUES ('Chocolate',5.00,'peanut.p
 
 INSERT INTO pbottom (bottomName,bottomPrice,bottomImgurl) VALUES ('Chocolate',5.00,'chocolate.png'),('Vanilla',5.00,'strawberry.png'),('Vanilla',5.00,'vanilla.png'),('Pistacio',6.00,'chocolate.png'),('Almond',7.00,'strawberry.png');
 
-INSERT INTO orders (date,oPrice,status) VALUES (NOW(),50.00,0);
-
+START TRANSACTION;
+INSERT INTO orders (date,oPrice) VALUES (NOW(),20.00);
 INSERT INTO o_lines (FK_oid,FK_topId,FK_bottomId,FK_cemail,qty) VALUES (1,1,1,'martin@dk.dk',2);
+COMMIT;
+
+
+-- INSERT INTO orders (date,oPrice,status) VALUES (NOW(),50.00,0);
+
+-- INSERT INTO o_lines (FK_oid,FK_topId,FK_bottomId,FK_cemail,qty) VALUES (1,1,1,'martin@dk.dk',2);
 
 
 CREATE VIEW customerOrders AS
-SELECT name,email,balance, oid,oPrice,date, topPrice,bottomPrice FROM customers 
+SELECT oid,name,email, date, qty,topPrice,bottomPrice,oPrice FROM customers 
 INNER JOIN o_lines ON customers.email = o_lines.FK_cemail 
 INNER JOIN orders ON o_lines.FK_oid = orders.oid 
 INNER JOIN  ptop ON o_lines.FK_topId = ptop.id
@@ -72,3 +77,8 @@ INNER JOIN pbottom ON o_lines.FK_bottomId = pbottom.id;
 
 
 
+SELECT oid,name,email, date, qty,topPrice,bottomPrice,oPrice FROM customers 
+INNER JOIN o_lines ON customers.email = o_lines.FK_cemail 
+INNER JOIN orders ON o_lines.FK_oid = orders.oid 
+INNER JOIN  ptop ON o_lines.FK_topId = ptop.id
+INNER JOIN pbottom ON o_lines.FK_bottomId = pbottom.id WHERE email ='martin@dk.dk';

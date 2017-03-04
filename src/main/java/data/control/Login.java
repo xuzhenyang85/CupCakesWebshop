@@ -1,12 +1,9 @@
 package data.control;
 
 import data.Mapper.PartMapper;
-import domain.entites.Customer;
 import domain.exception.CustomerException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,24 +30,25 @@ public class Login extends HttpServlet
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+       
         try (PrintWriter out = response.getWriter())
         {
             response.setContentType("text/html;charset=UTF-8");
             // set session email
             HttpSession session = request.getSession();
             String email = request.getParameter("email");
-            session.setAttribute("email", email);
             
             //test session virker
             //String cemail = (String) session.getAttribute("email");
             String password = request.getParameter("password");
-
+            
             PartMapper pm = new PartMapper();
             boolean validateCustomer = pm.validateCustomer(email, password);
 
             if (validateCustomer)
             {
                 //out.print(cemail);
+                session.setAttribute("email", email);
                 response.sendRedirect("customer.jsp");
             } else
             {

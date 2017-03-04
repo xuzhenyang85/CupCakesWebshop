@@ -1,6 +1,7 @@
 
 package data.control;
 
+import domain.entites.PTop;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -29,6 +30,8 @@ public class OrderPay extends HttpServlet
             throws ServletException, IOException
     {
         response.setContentType("text/html;charset=UTF-8");
+        String[]  ptop = request.getParameterValues("ptop");
+        
         try (PrintWriter out = response.getWriter())
         {
             /* TODO output your page here. You may use following sample code. */
@@ -38,7 +41,8 @@ public class OrderPay extends HttpServlet
             out.println("<title>Servlet OrderPay</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet OrderPay at " + request.getContextPath() + "</h1>");
+            //for(int i=0;i<rataList.)
+            out.println("<h1>ptop " + ptop[1]+ "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
