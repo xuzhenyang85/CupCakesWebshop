@@ -21,4 +21,5 @@ public interface IDBFacade
     public PBottom getBottom(int FK_bottomId);
     public void fillUpBalance(double balance, String email);
     public boolean enoughMoney (String email,double totalPrice);
+    void searchsomething (int i);
 }
