@@ -1,3 +1,0 @@
-Name: Xu Zhen Yang & Lasse Vistrup Rasmussen
-Link: http://46.101.109.188/cupcakes/
-Github: https://github.com/xuzhenyang85/CupCakesWebshop.git
